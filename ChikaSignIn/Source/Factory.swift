@@ -18,6 +18,7 @@ public final class Factory {
     
     public init() {
         self.action = { SignIn() }
+        self.theme = Theme()
     }
 
     public func withTheme(_ theme: Theme) -> Factory {

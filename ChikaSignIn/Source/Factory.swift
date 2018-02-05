@@ -17,8 +17,8 @@ public final class Factory {
     var output: ((Result<OK>) -> Void)?
     
     public init() {
-        self.action = { SignIn() }
         self.theme = Theme()
+        self.action = { SignIn() }
     }
 
     public func withTheme(_ theme: Theme) -> Factory {
@@ -35,7 +35,7 @@ public final class Factory {
         self.output = output
         return self
     }
-    
+
     public func build() -> Scene {
         defer {
             theme = nil
@@ -43,7 +43,8 @@ public final class Factory {
             output = nil
         }
         
-        let storyboard = UIStoryboard(name: "SignIn", bundle: nil)
+        let bundle = Bundle(for: Factory.self)
+        let storyboard = UIStoryboard(name: "SignIn", bundle: bundle)
         let scene = storyboard.instantiateInitialViewController() as! Scene
         scene.theme = theme
         scene.action = action

@@ -11,6 +11,12 @@ import ChikaCore
 
 public final class Scene: UIViewController {
     
+    enum State {
+        
+        case idle
+        case signingIn
+    }
+    
     @IBOutlet weak var goButton: UIButton!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
@@ -22,11 +28,18 @@ public final class Scene: UIViewController {
     var action: (() -> SignIn)!
     var operation: SignInOperator!
     
-    public override func loadView() {
-        super.loadView()
-        
-        goButton.layer.cornerRadius = 4
-        goButton.layer.masksToBounds = true
+    var state: State = .idle {
+        didSet {
+            guard isViewLoaded else {
+                return
+            }
+            
+            updateView(withState: state)
+        }
+    }
+    
+    deinit {
+        dispose()
     }
     
     public override func viewDidLoad() {
@@ -40,12 +53,23 @@ public final class Scene: UIViewController {
         styleInput(passwordInput)
         styleButton(goButton)
         styleIndicator(indicatorView)
+        
+        updateView(withState: state)
+    }
+    
+    public func dispose() {
+        theme =  nil
+        output = nil
+        action = nil
+        operation = nil
     }
     
     @IBAction func go() {
         guard action != nil else {
             return
         }
+        
+        state = .signingIn
         
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
@@ -60,6 +84,7 @@ public final class Scene: UIViewController {
         button.titleLabel?.font = theme.buttonFont
         button.backgroundColor = theme.buttonBackgroundColor
         button.layer.cornerRadius = 4
+        button.layer.masksToBounds = true
         button.setTitleColor(theme.buttonTitleColor, for: .normal)
     }
     
@@ -69,10 +94,13 @@ public final class Scene: UIViewController {
         input.textColor = theme.inputTextColor
         input.layer.cornerRadius = 4
         input.layer.borderWidth = 1
+        input.layer.masksToBounds = true
         input.layer.borderColor = theme.inputTextColor?.cgColor
     }
     
     private func completion(_ result: Result<Auth>) {
+        state = .idle
+            
         guard output != nil else {
             return
         }
@@ -83,6 +111,18 @@ public final class Scene: UIViewController {
         
         case .err(let error):
             output(.err(error))
+        }
+    }
+    
+    private func updateView(withState state: State) {
+        switch state {
+        case .idle:
+            view.isUserInteractionEnabled = true
+            indicatorView.stopAnimating()
+            
+        case .signingIn:
+            view.isUserInteractionEnabled = false
+            indicatorView.stopAnimating()
         }
     }
     

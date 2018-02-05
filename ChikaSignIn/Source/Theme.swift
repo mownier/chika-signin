@@ -22,6 +22,16 @@ public final class Theme {
     public var indicatorColor: UIColor?
     
     public init() {
+        self.backgroundColor = .white
+        
+        self.inputFont = UIFont.systemFont(ofSize: 14.0)
+        self.inputTextColor = .black
+        
+        self.buttonFont = UIFont.systemFont(ofSize: 15.0)
+        self.buttonTitleColor = .white
+        self.buttonBackgroundColor = .black
+        
+        self.indicatorColor = .white
     }
     
 }

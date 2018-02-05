@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
   s.source_files = 'ChikaSignIn/Source/*.swift'
   s.resources = ['ChikaSignIn/Source/SignIn.storyboard']
   s.requires_arc = true
+  s.dependency 'ChikaFirebase/Auth:SignIn'
 end

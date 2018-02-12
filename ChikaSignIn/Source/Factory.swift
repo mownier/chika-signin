@@ -15,10 +15,12 @@ public final class Factory {
     var theme: Theme?
     var action: (() -> ChikaCore.SignIn)?
     var output: ((Result<OK>) -> Void)?
+    var onlineSwitcher: (() -> ChikaCore.OnlinePresenceSwitcher)?
     
     public init() {
         self.theme = Theme()
         self.action = { SignIn() }
+        self.onlineSwitcher = { OnlinePresenceSwitcher() }
     }
 
     public func withTheme(_ theme: Theme) -> Factory {
@@ -35,12 +37,18 @@ public final class Factory {
         self.output = output
         return self
     }
+    
+    public func withOnlineSwitcher(_ switcher: @escaping () -> ChikaCore.OnlinePresenceSwitcher) -> Factory {
+        self.onlineSwitcher = switcher
+        return self
+    }
 
     public func build() -> Scene {
         defer {
             theme = nil
             action = nil
             output = nil
+            onlineSwitcher = nil
         }
         
         let bundle = Bundle(for: Factory.self)
@@ -50,6 +58,9 @@ public final class Factory {
         scene.action = action
         scene.output = output
         scene.operation = SignInOperation()
+        scene.onlineSwitcher = onlineSwitcher
+        scene.onlineSwitcherOperation = OnlinePresenceSwitcherOperation()
+        
         return scene
     }
     

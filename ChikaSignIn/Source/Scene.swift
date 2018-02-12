@@ -28,6 +28,9 @@ public final class Scene: UIViewController {
     var action: (() -> SignIn)!
     var operation: SignInOperator!
     
+    var onlineSwitcher: (() -> OnlinePresenceSwitcher)!
+    var onlineSwitcherOperation: OnlinePresenceSwitcherOperator!
+    
     var state: State = .idle {
         didSet {
             guard isViewLoaded else {
@@ -45,6 +48,8 @@ public final class Scene: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateView(withState: state)
+        
         guard theme != nil else {
             return
         }
@@ -53,8 +58,6 @@ public final class Scene: UIViewController {
         styleInput(passwordInput)
         styleButton(goButton)
         styleIndicator(indicatorView)
-        
-        updateView(withState: state)
     }
     
     public func dispose() {
@@ -62,6 +65,8 @@ public final class Scene: UIViewController {
         output = nil
         action = nil
         operation = nil
+        onlineSwitcher = nil
+        onlineSwitcherOperation = nil
     }
     
     @IBAction func go() {
@@ -107,6 +112,7 @@ public final class Scene: UIViewController {
         
         switch result {
         case .ok:
+            let _ = onlineSwitcherOperation.switchToOnline(using: onlineSwitcher())
             output(.ok(OK("signed in successfully")))
         
         case .err(let error):

@@ -11,4 +11,5 @@ Pod::Spec.new do |s|
   s.resources = ['ChikaSignIn/Source/SignIn.storyboard']
   s.requires_arc = true
   s.dependency 'ChikaFirebase/Auth:SignIn'
+  s.dependency 'ChikaFirebase/Writer:OnlinePresenceSwitcher'
 end

@@ -13,6 +13,7 @@
 		48CC4CA720244B85007974E7 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CC4CA620244B85007974E7 /* SignIn.storyboard */; };
 		48CC4CAA20244BAA007974E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CC4CA820244BAA007974E7 /* Main.storyboard */; };
 		48CC4CB020244FCD007974E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48CC4CAF20244FCD007974E7 /* GoogleService-Info.plist */; };
+		48D6805B20319EBE00466C18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D6805A20319EBE00466C18 /* ViewController.swift */; };
 		48D94F9F2022EB9900D07B87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D94F9E2022EB9900D07B87 /* AppDelegate.swift */; };
 		48D94FA62022EB9900D07B87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D94FA52022EB9900D07B87 /* Assets.xcassets */; };
 		48D94FA92022EB9900D07B87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D94FA72022EB9900D07B87 /* LaunchScreen.storyboard */; };
@@ -39,6 +40,7 @@
 		48CC4CA620244B85007974E7 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		48CC4CA920244BAA007974E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48CC4CAF20244FCD007974E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../ChikaFirebaseDemo/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48D6805A20319EBE00466C18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48D94F9B2022EB9900D07B87 /* ChikaSignIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChikaSignIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D94F9E2022EB9900D07B87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48D94FA52022EB9900D07B87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				48CC4CAF20244FCD007974E7 /* GoogleService-Info.plist */,
 				48D94FAA2022EB9900D07B87 /* Info.plist */,
 				48D94F9E2022EB9900D07B87 /* AppDelegate.swift */,
+				48D6805A20319EBE00466C18 /* ViewController.swift */,
 				48D94FA52022EB9900D07B87 /* Assets.xcassets */,
 				48D94FA72022EB9900D07B87 /* LaunchScreen.storyboard */,
 				48CC4CA820244BAA007974E7 /* Main.storyboard */,
@@ -267,6 +270,7 @@
 				"${BUILT_PRODUCTS_DIR}/FirebaseCommunity/FirebaseCommunity.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -275,6 +279,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCommunity.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -369,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48D6805B20319EBE00466C18 /* ViewController.swift in Sources */,
 				48BEB80520234CBA00C9AD17 /* Factory.swift in Sources */,
 				48BEB80320234C1200C9AD17 /* Theme.swift in Sources */,
 				48D94F9F2022EB9900D07B87 /* AppDelegate.swift in Sources */,
